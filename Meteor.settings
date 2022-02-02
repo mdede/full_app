@@ -1,0 +1,14 @@
+{
+  "galaxy.meteor.com": {
+    "env": {
+      "MONGO_URL": "mongodb://milosdedecek:vc5EvEHcMAHD8yeBa@SG-eugalaxycluster-38731.servers.mongodirector.com:27017,SG-eugalaxycluster-38732.servers.mongodirector.com:27017/fullapp-eu-meteorapp-com?replicaSet=RS-eugalaxycluster-0&ssl=true"
+    }
+  },
+  "packages": {
+    "mongo": {
+      "options": {
+        "tlsAllowInvalidCertificates": true
+      }
+    }
+  }
+}

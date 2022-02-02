@@ -1,1 +1,6 @@
-test_private_text
+{
+  "user": "scott",
+  "pwd": "pwd",
+  "hostname": "localhost",
+  "port": "3128"
+}
