@@ -1,9 +1,8 @@
 import { Meteor } from 'meteor/meteor';
 import { Log } from 'meteor/logging';
 
-let oraConnectionJSON = '';
+const oraConnectionJSON = JSON.parse(Assets.getText('OracleConnection.json'));
 
 Meteor.startup(() => {
-    oraConnectionJSON = Assets.getText('OracleConnection.json');
-    Log.info("Connection info read: "+oraConnectionJSON);
+    Log.info("Connection info read: "+oraConnectionJSON.user+"@"+oraConnectionJSON.hostname);
 });
