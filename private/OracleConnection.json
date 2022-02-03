@@ -1,6 +1,6 @@
 {
-  "user": "scott",
-  "pwd": "pwd",
-  "hostname": "localhost",
-  "port": "3128"
+  "user": "demonode",
+  "password": "demonode",
+  "connectString": "localhost:1521/xepdb1",
+  "libDir": "c:\\ora_21c\\dbhomeXE\\bin\\"
 }

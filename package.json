@@ -10,6 +10,7 @@
     "@fortawesome/fontawesome-free": "^5.15.4",
     "jquery": "^3.6.0",
     "meteor-node-stubs": "^1.1.0",
+    "oracledb": "^5.3.0",
     "purecss": "^2.0.6"
   },
   "devDependencies": {
