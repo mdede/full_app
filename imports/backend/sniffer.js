@@ -29,11 +29,6 @@ async function runExample() {
   let sql, binds, options, result, connection;
   try {
     connection = await oracledb.getConnection(); //from the pool
-  } catch (err) {
-    Log.error('getConnection Error: ')
-    Log.error(err);
-  }
-  try {
     binds = {};
     // For a complete list of options see the documentation.
     options = {
@@ -55,17 +50,14 @@ async function runExample() {
     Links.update({url: "http://seznam.cz"}, {$set: {title: result.rows[0]['CD']}});
 
   } catch (err) {
-    Log.error("Select error: ");
-    Log.error(err);
+    Log.error('Sniffer oracle: '+err.errorNum+": "+err.message);
   }
   finally {
     if (connection) {
       try {
-//        Log.debug("Releasing connection");
         await connection.release();
       } catch (err) {
-        Log.error("releasing connection")
-        Log.error(err);
+            Log.error('release Error: '+err.errorNum+": "+err.message);
       }
     }
   }
