@@ -1,5 +1,5 @@
 {
   "snifferRun": true,
-  "snifferTimeout": 5000,
+  "snifferTimeout": 10000,
   "public": { "client_and_server_setting": "bar" }
 }

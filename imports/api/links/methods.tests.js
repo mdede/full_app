@@ -5,7 +5,7 @@
 import { Meteor } from 'meteor/meteor';
 import { assert } from 'chai';
 import { Links } from './links.js';
-import './methods.js';
+import { linksInsert } from './methods.js';
 
 if (Meteor.isServer) {
   describe('links methods', function () {
@@ -13,11 +13,18 @@ if (Meteor.isServer) {
       Links.remove({});
     });
 
+    it('can not add incorrect link Title', function () {
+        assert.throws(() => {
+            linksInsert.call({title: 1, url: 'https://www.meteor.com'});
+        }, undefined, /must be of type String/);
+    });
+    it('can not add incorrect link Url', function () {
+        assert.throws(() => {
+            linksInsert.call({title: "String OK", url: -100});
+        }, undefined, /must be of type String/);
+    });
     it('can add a new link', function () {
-      const addLink = Meteor.server.method_handlers['links.insert'];
-
-      addLink.apply({}, ['meteor.com', 'https://www.meteor.com']);
-
+      linksInsert.call({title: 'meteor.com', url: 'https://www.meteor.com'});
       assert.equal(Links.find().count(), 1);
     });
   });

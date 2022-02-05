@@ -1,18 +1,21 @@
 // Methods related to links
 
 import { Meteor } from 'meteor/meteor';
-import { check } from 'meteor/check';
+import { ValidatedMethod } from 'meteor/mdg:validated-method';
+import SimpleSchema from 'simpl-schema';
 import { Links } from './links.js';
 
-Meteor.methods({
-  'links.insert'(title, url) {
-    check(url, String);
-    check(title, String);
-
+export const linksInsert = new ValidatedMethod({
+  name: 'links.insert',
+  validate: new SimpleSchema({
+    title: { type: String },
+    url: { type: String }
+  }).validator(),
+  run({ title, url }) {
     return Links.insert({
       url,
       title,
       createdAt: new Date(),
     });
-  },
+  }
 });

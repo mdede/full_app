@@ -1,5 +1,6 @@
 import { Links } from '/imports/api/links/links.js';
 import { Meteor } from 'meteor/meteor';
+import { linksInsert } from '/imports/api/links/methods.js';
 import './info.html';
 
 Template.info.onCreated(function () {
@@ -20,12 +21,15 @@ Template.info.events({
     const title = target.title;
     const url = target.url;
 
-    Meteor.call('links.insert', title.value, url.value, (error) => {
-      if (error) {
-        alert(error.error);
+    linksInsert.call({
+      title: title.value,
+      url: url.value
+    }, (err, res) => {
+      if (err) {
+        alert(err);
       } else {
-        title.value = '';
-        url.value = '';
+        title.value='';
+        url.value='';
       }
     });
   },
