@@ -3,33 +3,26 @@ import { Log } from 'meteor/logging';
 import { Links } from '/imports/api/links/links.js';
 import oracledb from 'oracledb';
 
-const oraConnectionJSON = JSON.parse(Assets.getText('OracleConnection.json'));
 
 Meteor.startup(() => {
-    Log.info("Connection info read: "+oraConnectionJSON.user+"@"+oraConnectionJSON.connectString);
-//  try {
-//    Log.info(oracledb);
-    oracledb.initOracleClient({libDir: oraConnectionJSON.libDir});
-//  } catch (err) {
-//    Log.error('Whoops!');
-//    Log.error(err);
-//  }
-    initPool();
-
-//    runExample();
+    if(Meteor.settings.snifferRun) {
+        initPool();
+    }
 });
 
 async function initPool() {
+  const oraConnectionJSON = JSON.parse(Assets.getText('OracleConnection.json'));
+  Log.info("Init oracledb at "+oraConnectionJSON.libDir+", connect to: "+oraConnectionJSON.user+"@"+oraConnectionJSON.connectString);
   try {
+   oracledb.initOracleClient({libDir: oraConnectionJSON.libDir});
    await oracledb.createPool(oraConnectionJSON);
    Log.debug('got pool');
   } catch (err) {
            Log.error('Error pool');
            Log.error(err);
+  } finally {
+      Meteor.setInterval(()=>runExample (), Meteor.settings.snifferTimeout);
   }
-//   await runExample();
-  Meteor.setInterval(()=>runExample (), 3000);
-
 }
 
 async function runExample() {
