@@ -1,4 +1,5 @@
 import './hello.html';
+import { Meteor } from 'meteor/meteor';
 
 Template.hello.onCreated(function helloOnCreated() {
   // counter starts at 0
@@ -8,6 +9,9 @@ Template.hello.onCreated(function helloOnCreated() {
 Template.hello.helpers({
   counter() {
     return Template.instance().counter.get();
+  },
+  gitCommitHash() {
+    return Meteor.gitCommitHash;
   },
 });
 

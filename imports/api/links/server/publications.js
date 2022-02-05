@@ -4,5 +4,5 @@ import { Meteor } from 'meteor/meteor';
 import { Links } from '../links.js';
 
 Meteor.publish('links.all', function () {
-  return Links.find();
+  return Links.find({}, {fields: {title: 1, url:1 }});
 });
