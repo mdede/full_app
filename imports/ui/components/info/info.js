@@ -4,7 +4,11 @@ import { linksInsert } from '/imports/api/links/methods.js';
 import './info.html';
 
 Template.info.onCreated(function () {
-  Meteor.subscribe('links.all');
+//  this.getListId = () => FlowRouter.getParam('_id');
+  this.autorun(() => {
+//    this.subscribe('todos.inList', this.getListId());
+      this.subscribe('links.all');
+  });
 });
 
 Template.info.helpers({
