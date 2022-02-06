@@ -1,13 +1,22 @@
 <template name="info">
   <h2>Learn Meteor!</h2>
+
+  <form class="info-link-add pure-form pure-g">
+<!--    <fieldset>-->
+<!--      <legend>Adding</legend>-->
+      <div class="pure-u-1-4">
+        <input type="text" name="title" class="pure-input-1" placeholder="Title" required>
+      </div>
+      <div class="pure-u-1-2">
+        <input type="url" name="url" class="pure-input-1" placeholder="Url" required>
+      </div>
+      <div class="pure-u-1-4">
+        <button type="submit" name="submit" class="pure-input-1 pure-button pure-button-primary">Add new link</button>
+      </div>
+<!--    </fieldset>-->
+  </form>
+
   <ul>
-    <li>
-      <form class="info-link-add">
-        <input type="text" name="title" placeholder="Title" required>
-        <input type="url" name="url" placeholder="Url" required>
-        <input type="submit" name="submit" value="Add new link">
-      </form>
-    </li>
     {{#each lnk in links}}
       <li><a href="{{lnk.url}}" target="_blank">{{lnk.title}}</a></li>
     {{/each}}
