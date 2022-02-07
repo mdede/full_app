@@ -1,0 +1,1 @@
+FROM registry.gitlab.com/tozd/docker/meteor:ubuntu-xenial-2.5.6
