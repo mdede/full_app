@@ -2,5 +2,5 @@
   "user": "demonode",
   "password": "demonode",
   "connectString": "localhost:1521/xepdb1",
-  "libDir": "c:\\ora_21c\\dbhomeXE\\bin\\"
+  "libDir": "c:\\Users\\tmp\\AppData\\Local\\instantclient_21_3\\"
 }
