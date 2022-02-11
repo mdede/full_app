@@ -19,7 +19,7 @@ async function initPool() {
    Log.debug('got pool');
   } catch (err) {
            Log.error('Error pool');
-           Log.error(err);
+           Log.error('pool Error: '+err.errorNum+": "+err.message);;
   } finally {
       Meteor.setInterval(()=>runExample (), Meteor.settings.snifferTimeout);
   }
