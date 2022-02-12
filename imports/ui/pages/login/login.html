@@ -1,0 +1,31 @@
+<template name="App_login">
+    <a href="{{pathFor 'App.home'}}"><i class="fa fa-home"></i> Home</a>
+    <form class="login-form pure-form pure-form-aligned">
+        <fieldset>
+            <div class="pure-control-group">
+            <label htmlFor="username">Username</label>
+                <input
+                        type="text"
+                        placeholder="Username"
+                        name="username"
+                        required
+                />
+                <span class="pure-form-message-inline">This is a required field.</span>
+            </div>
+
+        <div class="pure-control-group">
+            <label htmlFor="password">Password</label>
+
+            <input
+                    type="password"
+                    placeholder="Password"
+                    name="password"
+                    required
+            />
+        </div>
+        <div class="pure-control-group">
+            <button type="submit" class="pure-button pure-button-primary">Log In</button>
+        </div>
+        </fieldset>
+    </form>
+</template>
