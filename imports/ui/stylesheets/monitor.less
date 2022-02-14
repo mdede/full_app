@@ -1,0 +1,53 @@
+// Font sizes relative to viewport
+@font-size-xl: 22vh;
+@font-size-l: @font-size-xl * 0.7;
+@font-size-m: @font-size-l * 0.6;
+@font-size-s: @font-size-m * 0.3;
+
+// Colors
+@light-green: #01ED22;
+@dark-green: #2A5F39;
+@yellow: #F3EB07;
+@red: #FE0000;
+@blue: #5DC5EB;
+
+div#monitor {
+    color: white;
+    background: black;
+    font-weight: bolder;
+
+//     div.pure-g {
+//         outline: 1px dotted yellow;
+//     }
+    .l-box {
+        margin: 2px 15px 2px 15px;
+    }
+    .white-box {
+        padding: 3px;
+        border: 4px solid white;
+    }
+//         text align
+    div.pure-g > div { text-align: center; }
+    #hour_active, #shift_active { text-align: left; }
+
+//colors
+    #break_info { background: @blue; }
+    #time { background: @light-green; color: black; }
+    #hour_shift {background: @dark-green; color: white; }
+    #PA_A, #shift_A { color: @yellow; }
+    #percent_info { color: @light-green; }
+    #shift_percent { color: @red; }
+
+// image size
+    div.image_div, div.image_div > img {
+        height: 100%;
+        object-fit: contain;
+    }
+
+// font sizes
+    #percent_info { font-size: @font-size-xl; }
+    #PA { font-size: @font-size-l; }
+    #break_div, #shift_detail, #hour_active { font-size: @font-size-m; }
+    #hour_active, #shift_active, #hour_shift { font-size: @font-size-s; }
+
+}
