@@ -15,8 +15,8 @@ FlowRouter.route('/', {
   },
 });
 
-FlowRouter.route('/mon', {
-  name: 'App.mon',
+FlowRouter.route('/monitor', {
+  name: 'App.monitor',
   action() {
     this.render('App_body', 'Monitor');
   },
