@@ -1,0 +1,26 @@
+<template name="Menu">
+<div id="menu" class="pure-menu pure-menu-horizontal">
+<!--    <a href="{{pathFor 'App.home'}}"><i class="fa fa-home"></i> Home</a>-->
+    <ul class="pure-menu-list">
+        <li class="pure-menu-item {{menuSelected 'App.home'}}" >
+            <span id="App.home"><i class="fa fa-home"></i> Home</span>
+        </li>
+        <li class="pure-menu-item {{menuSelected 'App.monitor'}}">
+            <span id="App.monitor"><i class="fa fa-tachometer-alt"></i> Monitor</span>
+        </li>
+        {{#if isUserLogged}}
+            <li class="pure-menu-item">
+                <span id="logout"><i class="fa fa-walking"></i> Logout</span>
+            </li>
+        {{else}}
+            <li class="pure-menu-item {{menuSelected 'App.login'}}">
+                <span id="App.login"><i class="fa fa-user"></i> Login</span>
+            </li>
+        {{/if}}
+        <li class="pure-menu-item pure-menu-disabled">
+            <a href="#" class="pure-menu-link">Admin</a>
+        </li>
+    </ul>
+    <span class="info">Route: {{currentRouteName}} User: {{getUser.username}}</span>
+</div>
+</template>
