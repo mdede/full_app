@@ -6,9 +6,15 @@
     <div class="pure-u-1 pure-u-md-1-3"><p><i class="fa fa-home"></i> Thirds</p></div>
     <div class="pure-u-1 pure-u-md-1-3"><p>
       <i class="fa fa-camera"></i>
-      Middle
+      Route: {{currentRouteName}}
     </p></div>
-    <div class="pure-u-1 pure-u-md-1-3"><p>{{gitCommitHash}}</p></div>
+    <div class="pure-u-1 pure-u-md-1-3">
+      {{#if isUserLogged}}
+        <a href="" id="logout"><i class="fa fa-doors"></i> Logout {{getUser.username}}</a>
+      {{else}}
+        <a href="{{pathFor 'App.login'}}"><i class="fa fa-user"></i> Login link</a>
+      {{/if}}
+    </div>
   </div>
 
 </template>
