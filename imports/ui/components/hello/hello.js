@@ -1,9 +1,6 @@
 import './hello.html';
 import { Meteor } from 'meteor/meteor';
 
-const getUser = () => Meteor.user();
-const isUserLogged = () => !!getUser();
-
 Template.hello.onCreated(function helloOnCreated() {
   // counter starts at 0
   this.counter = new ReactiveVar(0);
@@ -16,12 +13,6 @@ Template.hello.helpers({
 //  gitCommitHash() {
 //    return Meteor.gitCommitHash;
 //  },
-  isUserLogged() {
-    return isUserLogged();
-  },
-    getUser() {
-      return getUser();
-    },
 });
 
 Template.hello.events({
