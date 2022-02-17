@@ -2,3 +2,4 @@
 
 import './helpers.js';
 import './routes.js';
+import './autoform.js';
