@@ -5,15 +5,17 @@ import { ValidatedMethod } from 'meteor/mdg:validated-method';
 import SimpleSchema from 'simpl-schema';
 import { Links } from './links.js';
 
-const linksSchema = new SimpleSchema({
+export const linksSchema = new SimpleSchema({
     _id: { type: String, regEx: SimpleSchema.RegEx.Id },
     title: { type: String },
-    url: { type: String }
-    });
+    url: { type: String },
+    lastUpdatedAt: { type: Date, optional: true },
+    createdAt: { type: Date, optional: true },
+});
 
 export const linksInsert = new ValidatedMethod({
   name: 'links.insert',
-  validate: linksSchema.omit("_id").validator({ clean: true, filter: false }),
+  validate: linksSchema.omit("_id", "lastUpdatedAt").validator({ clean: true, filter: true }),
   run({ title, url }) {
     if (!this.userId) {
       // Throw errors with a specific error code
@@ -28,7 +30,7 @@ export const linksInsert = new ValidatedMethod({
 
 export const linksUpdate = new ValidatedMethod({
   name: 'links.update',
-  validate: linksSchema.validator({ clean: true }),
+  validate: linksSchema.validator({ clean: true, filter: true }),
   run(doc) {
     if (!this.userId) {
       throw new Meteor.Error('links.update.notLoggedIn', 'Must be logged in to update links.');
@@ -43,7 +45,7 @@ export const linksUpdate = new ValidatedMethod({
 
 export const linksDelete = new ValidatedMethod({
   name: 'links.delete',
-  validate: linksSchema.pick("_id").validator({ clean: true }),
+  validate: linksSchema.pick("_id").validator({ clean: true, filter: true }),
   run(doc) {
     if (!this.userId) {
       throw new Meteor.Error('links.update.notLoggedIn', 'Must be logged in to delete links.');

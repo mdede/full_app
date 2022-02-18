@@ -1,6 +1,6 @@
 import { Links } from '/imports/api/links/links.js';
 import { Meteor } from 'meteor/meteor';
-import { linksInsert, linksUpdate, linksDelete } from '/imports/api/links/methods.js';
+import { linksSchema, linksInsert, linksUpdate, linksDelete } from '/imports/api/links/methods.js';
 import './info.html';
 
 var edit_id;
@@ -28,6 +28,9 @@ Template.single_link.onCreated(function () {
     let parentView = Blaze.currentView.parentView.parentView.parentView.parentView;
     let parentInstance = parentView.templateInstance();
     this.edit_id = parentInstance.edit_id;
+    this.autorun(() => {
+        linksSchema.validate(Template.currentData());
+    });
 });
 
 Template.single_link.helpers({
