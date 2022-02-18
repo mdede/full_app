@@ -2,31 +2,35 @@
   <h2>Learn Meteor!</h2>
 
   <div id="links">
-    {{#each lnk in links}}
-        {{> single_link lnk }}
-    {{/each}}
-
-  <div class="pure-g">
-      {{#if isEdited 'new'}}
-      <form class="info-link-add pure-form pure-g">
-          <fieldset>
-              <div class="pure-u-1-4">
-                  <input type="text" name="title" class="pure-input-1" placeholder="Title" required>
-              </div>
-              <div class="pure-u-1-4">
-                  <input type="url" name="url" class="pure-input-1" placeholder="Url" required>
-              </div>
-              <div class="pure-u-1-4">
-                  <button type="submit" name="submit" class="pure-input-1 pure-button pure-button-primary">Add new link</button>
-              </div>
-          </fieldset>
-      </form>
+      {{#if Template.subscriptionsReady}}
+        {{#each lnk in links}}
+            {{> single_link lnk }}
+        {{/each}}
       {{else}}
-      <div class="pure-u-1">
-          <i class="fa fa-plus add-link" data="new"></i>
-      </div>
+        <h3>Loading...</h3>
       {{/if}}
-  </div>
+
+      <div class="pure-g">
+          {{#if isEdited 'new'}}
+          <form class="info-link-add pure-form pure-g">
+              <fieldset>
+                  <div class="pure-u-1-4">
+                      <input type="text" name="title" class="pure-input-1" placeholder="Title" required>
+                  </div>
+                  <div class="pure-u-1-4">
+                      <input type="url" name="url" class="pure-input-1" placeholder="Url" required>
+                  </div>
+                  <div class="pure-u-1-4">
+                      <button type="submit" name="submit" class="pure-input-1 pure-button pure-button-primary">Add new link</button>
+                  </div>
+              </fieldset>
+          </form>
+          {{else}}
+          <div class="pure-u-1">
+              <i class="fa fa-plus add-link" data="new"></i>
+          </div>
+          {{/if}}
+      </div>
   </div>
 </template>
 

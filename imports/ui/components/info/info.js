@@ -3,15 +3,12 @@ import { Meteor } from 'meteor/meteor';
 import { linksSchema, linksInsert, linksUpdate, linksDelete } from '/imports/api/links/methods.js';
 import './info.html';
 
-var edit_id;
-
 Template.info.onCreated(function () {
 //  this.getListId = () => FlowRouter.getParam('_id');
   this.autorun(() => {
 //    this.subscribe('todos.inList', this.getListId());
       this.subscribe('links.all');
   });
-//  _id of edited link
   this.edit_id = new ReactiveVar('');
 });
 
@@ -25,7 +22,7 @@ Template.info.helpers({
 });
 
 Template.single_link.onCreated(function () {
-    let parentView = Blaze.currentView.parentView.parentView.parentView.parentView;
+    let parentView = Blaze.currentView.parentView.parentView.parentView.parentView.parentView;
     let parentInstance = parentView.templateInstance();
     this.edit_id = parentInstance.edit_id;
     this.autorun(() => {

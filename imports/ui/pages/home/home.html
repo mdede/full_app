@@ -1,4 +1,7 @@
 <template name="App_home">
   {{> hello }}
   {{> info }}
+  {{#unless connected}}
+    <div class="connecting">Trying to connect...</div>
+  {{/unless}}
 </template>
