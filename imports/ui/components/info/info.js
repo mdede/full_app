@@ -3,6 +3,8 @@ import { Meteor } from 'meteor/meteor';
 import { linksInsert, linksUpdate, linksDelete } from '/imports/api/links/methods.js';
 import './info.html';
 
+var edit_id;
+
 Template.info.onCreated(function () {
 //  this.getListId = () => FlowRouter.getParam('_id');
   this.autorun(() => {
@@ -19,7 +21,19 @@ Template.info.helpers({
   },
   isEdited(_id) {
     return _id === Template.instance().edit_id.get() ? true : false;
-  }
+  },
+});
+
+Template.single_link.onCreated(function () {
+    let parentView = Blaze.currentView.parentView.parentView.parentView.parentView;
+    let parentInstance = parentView.templateInstance();
+    this.edit_id = parentInstance.edit_id;
+});
+
+Template.single_link.helpers({
+  isEdited(_id) {
+    return _id === Template.instance().edit_id.get() ? true : false;
+  },
 });
 
 Template.info.events({
@@ -43,6 +57,12 @@ Template.info.events({
       }
     });
   },
+   'click .add-link' (event, instance) {
+       instance.edit_id.set('new');
+   },
+ });
+
+Template.single_link.events({
     'submit .info-link-update' (event, instance) {
       event.preventDefault();
       const target = event.target;
@@ -69,14 +89,12 @@ Template.info.events({
           instance.edit_id.set('');
         }
       });
-
     },
   'click .edit_cancel' (event, instance) {
     event.preventDefault();
-    instance.edit_id.set('');
+    edit_id.set('');
   },
-  'click .edit-link, click .add-link' (event, instance) {
-    const _id = event.target.getAttribute('data');
-    instance.edit_id.set(_id);
+  'click .edit-link' (event, instance) {
+      instance.edit_id.set(this._id);
   },
 });
