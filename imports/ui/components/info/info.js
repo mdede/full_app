@@ -92,7 +92,7 @@ Template.single_link.events({
     },
   'click .edit_cancel' (event, instance) {
     event.preventDefault();
-    edit_id.set('');
+    instance.edit_id.set('');
   },
   'click .edit-link' (event, instance) {
       instance.edit_id.set(this._id);
