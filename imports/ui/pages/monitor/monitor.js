@@ -29,6 +29,9 @@ Template.Monitor.helpers({
   bar_percent() {
     return dateVar.get('ss');
   },
+  triangle_position() {
+    return -dateVar.get('ss')+50;
+  },
   mon() {
     return {
         A: 54,
