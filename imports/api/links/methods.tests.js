@@ -15,17 +15,34 @@ if (Meteor.isServer) {
 
     it('can not add incorrect link Title', function () {
         assert.throws(() => {
-            linksInsert.call({title: 1, url: 'https://www.meteor.com'});
+            linksInsert.validate({title: 1, url: 'https://www.meteor.com'});
         }, undefined, /must be of type String/);
     });
     it('can not add incorrect link Url', function () {
         assert.throws(() => {
-            linksInsert.call({title: "String OK", url: -100});
+            linksInsert.validate({title: "String OK", url: -100});
         }, undefined, /must be of type String/);
     });
     it('can add a new link', function () {
-      linksInsert.call({title: 'meteor.com', url: 'https://www.meteor.com'});
-      assert.equal(Links.find().count(), 1);
+        assert.doesNotThrow (() => {
+            linksInsert.validate({title: 'meteor.com', url: 'https://www.meteor.com'});
+        });
     });
+    it('accepts and filter our extra attr', function () {
+        assert.throws (() => {
+            linksInsert.validate({title: 'meteor.com', url: 'https://www.meteor.com', extra: 1});
+        }, undefined, /is not allowed by the schema/);
+    });
+    it('not logged on, throws error', function () {
+        assert.throws (() => {
+            linksInsert.call({title: 'meteor.com', url: 'https://www.meteor.com'});
+        }, undefined, /Must be logged in to/);
+    });
+    it('logged on with userId', function () {
+        assert.doesNotThrow (() => {
+            linksInsert._execute({ userId: "j8H12k9l98UjL" }, {title: 'meteor.com', url: 'https://www.meteor.com'});
+        });
+    });
+
   });
 }
