@@ -6,10 +6,10 @@
     "test": "meteor test --once --driver-package meteortesting:mocha"
   },
   "dependencies": {
-    "@babel/runtime": "^7.17.0",
+    "@babel/runtime": "^7.17.2",
     "@fortawesome/fontawesome-free": "^5.15.4",
     "bcrypt": "^5.0.1",
-    "caniuse-lite": "^1.0.30001311",
+    "caniuse-lite": "^1.0.30001312",
     "jquery": "^3.6.0",
     "meteor-node-stubs": "^1.1.0",
     "oracledb": "^5.3.0",
