@@ -2,4 +2,5 @@
 
 import './fixtures.js';
 import './register-api.js';
+import './hardening.js';
 import '/imports/backend/sniffer.js';
