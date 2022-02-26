@@ -10,9 +10,9 @@ Template.hello.helpers({
   counter() {
     return Template.instance().counter.get();
   },
-//  gitCommitHash() {
-//    return Meteor.gitCommitHash;
-//  },
+  gitCommitHash() {
+    return Meteor.gitCommitHash;
+  },
 });
 
 Template.hello.events({
