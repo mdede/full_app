@@ -64,6 +64,7 @@ npm-mongo@4.3.1
 observe-sequence@1.0.19
 ordered-dict@1.1.0
 ostrio:flow-router-extra@3.7.5
+ostrio:flow-router-title@3.2.1
 promise@0.12.0
 random@1.2.0
 rate-limit@1.0.9
