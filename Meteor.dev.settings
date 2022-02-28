@@ -1,5 +1,4 @@
 {
-  "snifferRun": false,
-  "snifferTimeout": 10000,
+  "snifferSchedule": "every 30 s",
   "public": { "client_and_server_setting": "bar" }
 }

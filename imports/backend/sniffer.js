@@ -1,11 +1,11 @@
 import { Meteor } from 'meteor/meteor';
 import { Log } from 'meteor/logging';
 import { Links } from '/imports/api/links/links.js';
+import { SyncedCron } from 'meteor/littledata:synced-cron';
 import oracledb from 'oracledb';
 
-
 Meteor.startup(() => {
-    if(Meteor.settings.snifferRun) {
+    if(Meteor.settings.snifferSchedule) {
         initPool();
     }
 });
@@ -18,10 +18,15 @@ async function initPool() {
    await oracledb.createPool(oraConnectionJSON);
    Log.debug('got pool');
   } catch (err) {
-           Log.error('Error pool');
-           Log.error('pool Error: '+err.errorNum+": "+err.message);;
+           Log.error('initPool error: '+err.errorNum+": "+err.message);;
   } finally {
-      Meteor.setInterval(()=>runExample (), Meteor.settings.snifferTimeout);
+//      Meteor.setInterval(()=>runExample (), Meteor.settings.snifferTimeout);
+          SyncedCron.add({
+            name: 'query oracle',
+            schedule: parser => parser.text(Meteor.settings.snifferSchedule, true),
+            job: () => runExample(),
+          });
+          SyncedCron.start();
   }
 }
 

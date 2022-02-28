@@ -31,3 +31,4 @@ session@1.2.0
 ddp-rate-limiter
 underscore
 ostrio:flow-router-title
+littledata:synced-cron
