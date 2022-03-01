@@ -3,6 +3,8 @@ import { Log } from 'meteor/logging';
 import { Links } from '/imports/api/links/links.js';
 import { SyncedCron } from 'meteor/littledata:synced-cron';
 import oracledb from 'oracledb';
+import { Mongo } from 'meteor/mongo';
+import moment from 'moment';
 
 Meteor.startup(() => {
     if(Meteor.settings.snifferSchedule) {
@@ -25,6 +27,11 @@ async function initPool() {
             name: 'query oracle',
             schedule: parser => parser.text(Meteor.settings.snifferSchedule, true),
             job: () => runExample(),
+          });
+          SyncedCron.add({
+            name: 'cleanup',
+            schedule: parser => parser.text('every 1 hour'),
+            job: () => cleanup(),
           });
           SyncedCron.start();
   }
@@ -66,4 +73,10 @@ async function runExample() {
       }
     }
   }
+}
+
+function cleanup() {
+    const deletionDate = moment().subtract(24, 'hours');
+    let cnt=SyncedCron._collection.remove({intendedAt: {$lt: deletionDate}});
+    return "Removed recs: "+String(cnt)+" cut off time "+deletionDate.format('YYYY-MM-DD HH:mm');
 }
