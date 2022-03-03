@@ -77,6 +77,6 @@ async function runExample() {
 
 function cleanup() {
     const deletionDate = moment().subtract(24, 'hours');
-    let cnt=SyncedCron._collection.remove({intendedAt: {$lt: deletionDate}});
+    let cnt = SyncedCron._collection.remove({intendedAt: {$lt: deletionDate.toDate()}});
     return "Removed recs: "+String(cnt)+" cut off time "+deletionDate.format('YYYY-MM-DD HH:mm');
 }
