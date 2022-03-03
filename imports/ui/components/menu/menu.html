@@ -17,10 +17,12 @@
                 <span id="App.login"><i class="fa fa-user"></i> Login</span>
             </li>
         {{/if}}
-        <li class="pure-menu-item pure-menu-disabled">
-            <a href="#" class="pure-menu-link">Admin</a>
-        </li>
+        {{#if isInRole 'manage'}}
+            <li class="pure-menu-item ">
+                <span id="manage"><i class="fa fa-wrench"></i> Manage</span>
+            </li>
+        {{/if}}
     </ul>
-    <span class="info">Route: {{currentRouteName}} User: {{getUser.username}}</span>
+    <span class="info">Route: {{currentRouteName}} User: {{getUser.profile.name}}</span>
 </div>
 </template>

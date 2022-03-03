@@ -17,9 +17,9 @@ export const linksInsert = new ValidatedMethod({
   name: 'links.insert',
   validate: linksSchema.omit("_id", "lastUpdatedAt").validator({ filter: true }),
   run({ title, url }) {
-    if (!this.userId) {
+    if (! Roles.userIsInRole(this.userId, ['normal','manage'])) {
       // Throw errors with a specific error code
-      throw new Meteor.Error('links.insert.notLoggedIn', 'Must be logged in to add links.');
+      throw new Meteor.Error('links.insert.role', 'User does not have a role.');
     }
     return Links.insert({ url, title,
       createdAt: new Date(),
@@ -32,8 +32,8 @@ export const linksUpdate = new ValidatedMethod({
   name: 'links.update',
   validate: linksSchema.validator({ filter: true }),
   run(doc) {
-    if (!this.userId) {
-      throw new Meteor.Error('links.update.notLoggedIn', 'Must be logged in to update links.');
+    if (!Roles.userIsInRole(this.userId, ['normal','manage'])) {
+      throw new Meteor.Error('links.update.role', 'User does not have a role.');
     }
     return Links.update(doc._id, {$set: {
         url: doc.url,
@@ -47,8 +47,8 @@ export const linksDelete = new ValidatedMethod({
   name: 'links.delete',
   validate: linksSchema.pick("_id").validator({ filter: true }),
   run(doc) {
-    if (!this.userId) {
-      throw new Meteor.Error('links.update.notLoggedIn', 'Must be logged in to delete links.');
+    if (!Roles.userIsInRole(this.userId, ['manage'])) {
+      throw new Meteor.Error('links.update.role', 'User does not have a role.');
     }
     return Links.remove(doc._id);
   }

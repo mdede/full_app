@@ -1,13 +1,21 @@
 // Tests for links methods
 //
 // https://guide.meteor.com/testing.html
-
 import { Meteor } from 'meteor/meteor';
 import { assert } from 'chai';
+import { Accounts } from 'meteor/accounts-base';
+import { Roles } from 'meteor/alanning:roles';
 import { Links } from './links.js';
 import { linksInsert } from './methods.js';
+import { createRoles, createUsers } from '../../startup/server/users_roles.js';
+
+var testUserID;
 
 if (Meteor.isServer) {
+    createRoles();
+    createUsers();
+    testUserID = Accounts.findUserByUsername('nu')._id;
+
   describe('links methods', function () {
     beforeEach(function () {
       Links.remove({});
@@ -16,11 +24,11 @@ if (Meteor.isServer) {
     it('linksInsert - not logged on, throws error', function () {
         assert.throws (() => {
             linksInsert.call({title: 'meteor.com', url: 'https://www.meteor.com'});
-        }, undefined, /Must be logged in to/);
+        }, undefined, /User does not have a role/);
     });
     it('linksInsert - logged on with userId', function () {
         assert.doesNotThrow (() => {
-            linksInsert._execute({ userId: "j8H12k9l98UjL" }, {title: 'meteor.com', url: 'https://www.meteor.com'});
+            linksInsert._execute({ userId: testUserID }, {title: 'meteor.com', url: 'https://www.meteor.com'});
         });
     });
     it('linksInsert - can not add incorrect link Title', function () {
