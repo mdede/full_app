@@ -1,0 +1,43 @@
+<template name="App_user">
+    <h2>{{getUser.profile.name}}</h2>
+    <h3>Login: {{getUser.username}}</h3>
+    <div>Roles: {{roles}}</div>
+    <div><button id="logout" class="pure-button">Logout</button></div>
+    <form class="password-form pure-form pure-form-aligned">
+        <fieldset>
+            <div class="pure-control-group">
+                <label htmlFor="password">Old password</label>
+                <input
+                        type="password"
+                        placeholder="Password"
+                        name="password"
+                        required
+                />
+            </div>
+            <div class="pure-control-group">
+                <label htmlFor="password1">New password</label>
+                <input
+                        type="password"
+                        placeholder="New password"
+                        name="password1"
+                        required
+                />
+            </div>
+            <div class="pure-control-group">
+                <label htmlFor="password2">Repeat password</label>
+                <input
+                        type="password"
+                        placeholder="Repeat password"
+                        name="password2"
+                        required
+                />
+            </div>
+            <div class="pure-controls">
+                <div><span>{{pwd12}}</span></div>
+            </div>
+            <div class="pure-controls">
+                <button type="submit" class="pure-button pure-button-primary {{enable_pwd_button}}">Change password</button>
+            </div>
+        </fieldset>
+    </form>
+</template>

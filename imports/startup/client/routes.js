@@ -16,6 +16,7 @@ FlowRouter.triggers.enter([scrollToTop]);
 import '../../ui/layouts/body/body.js';
 import '../../ui/pages/home/home.js';
 import '../../ui/pages/login/login.js';
+import '../../ui/pages/user/user.js';
 import '../../ui/pages/monitor/monitor.js';
 import '../../ui/pages/not-found/not-found.js';
 
@@ -42,6 +43,14 @@ FlowRouter.route('/login', {
   title: 'Login',
   action() {
     this.render('App_body', 'App_login');
+  },
+});
+
+FlowRouter.route('/user', {
+  name: 'App.user',
+  title: 'User settings',
+  action() {
+    this.render('App_body', 'App_user');
   },
 });
 

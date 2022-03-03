@@ -8,21 +8,21 @@
         <li class="pure-menu-item {{menuSelected 'App.monitor'}}">
             <span id="App.monitor"><i class="fa fa-tachometer-alt"></i> Monitor</span>
         </li>
+        {{#if isInRole 'manage'}}
+            <li class="pure-menu-item ">
+                <span id="App.manage"><i class="fa fa-wrench"></i> Manage</span>
+            </li>
+        {{/if}}
         {{#if isUserLogged}}
             <li class="pure-menu-item">
-                <span id="logout"><i class="fa fa-walking"></i> Logout</span>
+                <span id="App.user"><i class="fa fa-user"></i> {{getUser.profile.name}}</span>
             </li>
         {{else}}
             <li class="pure-menu-item {{menuSelected 'App.login'}}">
                 <span id="App.login"><i class="fa fa-user"></i> Login</span>
             </li>
         {{/if}}
-        {{#if isInRole 'manage'}}
-            <li class="pure-menu-item ">
-                <span id="manage"><i class="fa fa-wrench"></i> Manage</span>
-            </li>
-        {{/if}}
     </ul>
-    <span class="info">Route: {{currentRouteName}} User: {{getUser.profile.name}}</span>
+    <span class="info"> Route: {{currentRouteName}}</span>
 </div>
 </template>
