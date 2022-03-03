@@ -9,13 +9,11 @@ import { Links } from './links.js';
 import { linksInsert } from './methods.js';
 import { createRoles, createUsers } from '../../startup/server/users_roles.js';
 
-var testUserID;
+createRoles();
+createUsers();
+const testUserID = Accounts.findUserByUsername('nu')._id;
 
 if (Meteor.isServer) {
-    createRoles();
-    createUsers();
-    testUserID = Accounts.findUserByUsername('nu')._id;
-
   describe('links methods', function () {
     beforeEach(function () {
       Links.remove({});

@@ -10,15 +10,9 @@ import { Roles } from 'meteor/alanning:roles';
 import { createRoles, createUsers } from '../../../startup/server/users_roles.js';
 import './publications.js';
 
-var testUserID;
-
-//if (Meteor.isServer) {
-    createRoles();
-    createUsers();
-    testUserID = Accounts.findUserByUsername('nu')._id;
-    console.log("here");
-    console.log(testUserID);
-//}
+createRoles();
+createUsers();
+const testUserID = Accounts.findUserByUsername('nu')._id;
 
 describe('links publications', function () {
   beforeEach(function () {
