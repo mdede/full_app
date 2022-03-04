@@ -31,12 +31,12 @@ function initPool() {
           SyncedCron.add({
             name: 'query oracle',
             schedule: parser => parser.text(Meteor.settings.snifferSchedule, true),
-            job: () => runExample(),
+            job: (intendedAt,entry_name) => runExample(intendedAt,entry_name),
           });
   }
 }
 
-async function runExample() {
+async function runExample(intendedAt,entry_name) {
   let sql, binds, options, result, connection;
   try {
     connection = await oracledb.getConnection(); //from the pool
@@ -51,8 +51,18 @@ async function runExample() {
 //    Log.debug("Query results: ");
 //    Log.debug(result.rows, { depth: null });
     Links.update({url: "http://seznam.cz"}, {$set: {title: result.rows[0]['CD']}});
+    SyncedCron._collection.update(
+        {intendedAt: intendedAt, name: entry_name},
+        {$set: {result: "Success, rows: "+result.rows.length, finishedAt: new Date()}},
+        {multi: false}
+    );
   } catch (err) {
-    Log.error('Sniffer oracle: '+err.errorNum+": "+err.message);
+    Log.error('Sniffer oracle: '+err.message);
+    SyncedCron._collection.update(
+        {intendedAt: intendedAt, name: entry_name},
+        {$set: {result: "Error: "+String(err.message), finishedAt: new Date()}},
+        {multi: false}
+    );
   } finally {
     if (connection) {
       try {
