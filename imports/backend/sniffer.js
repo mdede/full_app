@@ -65,6 +65,9 @@ async function runExample() {
 }
 
 function cleanup() {
+    Log.debug("Cleanup exec");
+    return;
+//    this is done automatically by config.collectionTTL
     const deletionDate = moment().subtract(24, 'hours');
     let cnt = SyncedCron._collection.remove({intendedAt: {$lt: deletionDate.toDate()}});
     return "Removed recs: "+String(cnt)+" cut off time "+deletionDate.format('YYYY-MM-DD HH:mm');
