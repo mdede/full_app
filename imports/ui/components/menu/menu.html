@@ -13,6 +13,11 @@
                 <span id="App.manage"><i class="fa fa-wrench"></i> Manage</span>
             </li>
         {{/if}}
+        {{#if isInRole 'admin'}}
+            <li class="pure-menu-item ">
+                <span id="App.admin"><i class="fa fa-users"></i> Administration</span>
+            </li>
+        {{/if}}
         {{#if isUserLogged}}
             <li class="pure-menu-item">
                 <span id="App.user"><i class="fa fa-user"></i> {{getUser.profile.name}}</span>

@@ -1,4 +1,4 @@
 // Register your apis here
 import '../../api/links/methods.js';
 import '../../api/links/server/publications.js';
-import '../../api/roles/roles.js';
+import '../../api/user_roles/server/publications.js';

@@ -17,13 +17,11 @@ export function createRoles() {
     Roles.createRole('admin', {unlessExists: true});
 
 //    low level role on collections
-    Roles.createRole('USERS_VIEW', {unlessExists: true});
-    Roles.createRole('LINKS_EDIT', {unlessExists: true});
+//    Roles.createRole('USERS_VIEW', {unlessExists: true});
+//    Roles.createRole('LINKS_EDIT', {unlessExists: true});
 
 //mapping of the roles
-    Roles.addRolesToParent('USERS_VIEW', 'admin');
-    Roles.addRolesToParent('LINKS_EDIT', 'admin');
-    Roles.addRolesToParent('LINKS_EDIT', 'normal');
+//    Roles.addRolesToParent('LINKS_EDIT', 'normal');
 }
 
 export function createUsers() {

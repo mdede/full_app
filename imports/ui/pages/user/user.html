@@ -1,8 +1,8 @@
 <template name="App_user">
     <h2>{{getUser.profile.name}}</h2>
-    <h3>Login: {{getUser.username}}</h3>
-    <div>Roles: {{roles}}</div>
-    <div><button id="logout" class="pure-button">Logout</button></div>
+    <h4>Login: {{getUser.username}}, roles: {{roles}}</h4>
+    <div><button id="logout" class="pure-button"><i class="fa fa-sign-out-alt"></i> Logout</button></div>
+    <h2>Change password</h2>
     <form class="password-form pure-form pure-form-aligned">
         <fieldset>
             <div class="pure-control-group">
@@ -11,7 +11,6 @@
                         type="password"
                         placeholder="Password"
                         name="password"
-                        required
                 />
             </div>
             <div class="pure-control-group">
@@ -36,7 +35,7 @@
                 <div><span>{{pwd12}}</span></div>
             </div>
             <div class="pure-controls">
-                <button type="submit" class="pure-button pure-button-primary {{enable_pwd_button}}">Change password</button>
+                <button type="submit" class="pure-button pure-button-primary {{enable_pwd_button}}"><i class="fa fa-medkit"></i> Change password</button>
             </div>
         </fieldset>
     </form>

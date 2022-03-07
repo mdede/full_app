@@ -1,0 +1,32 @@
+<template name="App_admin">
+    <h1>Administration of users</h1>
+
+    {{#if Template.subscriptionsReady}}
+        <table>
+            <tr>
+            <td>Username</td>
+            <td>Name</td>
+            <td>Roles</td>
+            <td>Actions</td>
+            </tr>
+        {{#each usr in users}}
+            {{> admin_user usr }}
+        {{/each}}
+        </table>
+    {{else}}
+        <h3>Loading...</h3>
+    {{/if}}
+</template>
+
+<template name="admin_user">
+    <tr>
+        <td>{{username}}</td>
+        <td>{{profile.name}}</td>
+        <td>{{roles _id}}</td>
+        <td>
+            <div class="pure-controls">
+                <button id="reset_password" class="pure-button"><i class="fa fa-medkit"></i> Reset password</button>
+            </div>
+        </td>
+    </tr>
+</template>

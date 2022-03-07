@@ -2,12 +2,14 @@ import { Meteor } from 'meteor/meteor';
 import helmet from "helmet";
 import { DDPRateLimiter } from 'meteor/ddp-rate-limiter';
 import { linksInsert, linksUpdate, linksDelete } from '/imports/api/links/methods.js';
+import { resetPassword } from '/imports/api/user_roles/methods.js';
 
 // Get list of all method names on Lists
 const LISTS_METHODS = _.pluck([
   linksInsert,
   linksUpdate,
   linksDelete,
+  resetPassword,
 ], 'name');
 
 Meteor.startup(() => {

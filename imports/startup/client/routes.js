@@ -17,6 +17,7 @@ import '../../ui/layouts/body/body.js';
 import '../../ui/pages/home/home.js';
 import '../../ui/pages/login/login.js';
 import '../../ui/pages/user/user.js';
+import '../../ui/pages/admin/admin.js';
 import '../../ui/pages/monitor/monitor.js';
 import '../../ui/pages/not-found/not-found.js';
 
@@ -51,6 +52,14 @@ FlowRouter.route('/user', {
   title: 'User settings',
   action() {
     this.render('App_body', 'App_user');
+  },
+});
+
+FlowRouter.route('/admin', {
+  name: 'App.admin',
+  title: 'Admin',
+  action() {
+    this.render('App_body', 'App_admin');
   },
 });
 
