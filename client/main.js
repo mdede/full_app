@@ -3,5 +3,5 @@
 import '/imports/startup/client';
 import '/imports/startup/both';
 
-import "/node_modules/purecss/build/pure-min.css";
-import "/node_modules/purecss/build/grids-responsive-min.css";
+import "purecss/build/pure-min.css";
+import "purecss/build/grids-responsive-min.css";
