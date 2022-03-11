@@ -13,17 +13,19 @@ const LISTS_METHODS = _.pluck([
 ], 'name');
 
 Meteor.startup(() => {
-    WebApp.connectHandlers.use(
-      helmet.contentSecurityPolicy({
-        directives: {
-          defaultSrc: ["'self'"],
-          scriptSrc: ["'self'", "'unsafe-inline'"],
-          connectSrc: ["*"],
-          imgSrc: ["'self'"],
-          styleSrc: ["'self'", "'unsafe-inline'"],
-        }
-      })
-    );
+    if(Meteor.isProduction) {
+        WebApp.connectHandlers.use(
+          helmet.contentSecurityPolicy({
+            directives: {
+              defaultSrc: ["'self'"],
+              scriptSrc: ["'self'", "'unsafe-inline'"],
+              connectSrc: ["*"],
+              imgSrc: ["'self'"],
+              styleSrc: ["'self'", "'unsafe-inline'"],
+            }
+          })
+        );
+    }
     // Only allow 5 list operations per connection per second
     DDPRateLimiter.addRule({
         name(name) {

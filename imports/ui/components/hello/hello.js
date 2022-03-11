@@ -6,6 +6,16 @@ Template.hello.onCreated(function helloOnCreated() {
   this.counter = new ReactiveVar(0);
 });
 
+Template.hello.onRendered(function helloOnRendered() {
+
+
+   $(function () {
+          $('[data-bs-toggle="popover"]').popover()
+          $('[data-bs-toggle="tooltip"]').tooltip()
+        });
+        return;
+});
+
 Template.hello.helpers({
   counter() {
     return Template.instance().counter.get();
@@ -16,7 +26,7 @@ Template.hello.helpers({
 });
 
 Template.hello.events({
-  'click button'(event, instance) {
+  'click #clickme'(event, instance) {
     // increment the counter when button is clicked
     instance.counter.set(instance.counter.get() + 1);
   },

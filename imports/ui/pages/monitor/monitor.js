@@ -3,8 +3,12 @@ import { ReactiveDict } from 'meteor/reactive-dict';
 import './monitor.html';
 
 var dateVar = new ReactiveDict();
+var backgroundColor;
 
 Template.Monitor.onCreated(function () {
+    backgroundColor=$('body').css("background-color");
+    $('body').css("background-color","black");
+    $('.navbar').toggle('true');
     dateVar.setDefault({
         hh_mm: '00:00',
         ss: 00,
@@ -18,6 +22,8 @@ Template.Monitor.onCreated(function () {
 });
 
 Template.Monitor.onDestroyed(function () {
+    $('body').css("background-color", backgroundColor);
+    $('.navbar').toggle('true');
     Meteor.clearInterval(this.intervalJob);
     dateVar.destroy();
 });

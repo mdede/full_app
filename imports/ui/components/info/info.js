@@ -2,6 +2,7 @@ import { Links } from '/imports/api/links/links.js';
 import { Meteor } from 'meteor/meteor';
 import { linksSchema, linksInsert, linksUpdate, linksDelete } from '/imports/api/links/methods.js';
 import './info.html';
+import '../loading/loading.html';
 
 Template.info.onCreated(function () {
 //  this.getListId = () => FlowRouter.getParam('_id');

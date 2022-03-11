@@ -1,33 +1,28 @@
 <template name="Menu">
-<div id="menu" class="pure-menu pure-menu-horizontal">
-<!--    <a href="{{pathFor 'App.home'}}"><i class="fa fa-home"></i> Home</a>-->
-    <ul class="pure-menu-list">
-        <li class="pure-menu-item {{menuSelected 'App.home'}}" >
-            <span id="App.home"><i class="fa fa-home"></i> Home</span>
-        </li>
-        <li class="pure-menu-item {{menuSelected 'App.monitor'}}">
-            <span id="App.monitor"><i class="fa fa-tachometer-alt"></i> Monitor</span>
-        </li>
-        {{#if isInRole 'manage'}}
-            <li class="pure-menu-item ">
-                <span id="App.manage"><i class="fa fa-wrench"></i> Manage</span>
-            </li>
-        {{/if}}
-        {{#if isInRole 'admin'}}
-            <li class="pure-menu-item ">
-                <span id="App.admin"><i class="fa fa-users"></i> Administration</span>
-            </li>
-        {{/if}}
-        {{#if isUserLogged}}
-            <li class="pure-menu-item">
-                <span id="App.user"><i class="fa fa-user"></i> {{getUser.profile.name}}</span>
-            </li>
-        {{else}}
-            <li class="pure-menu-item {{menuSelected 'App.login'}}">
-                <span id="App.login"><i class="fa fa-user"></i> Login</span>
-            </li>
-        {{/if}}
-    </ul>
-    <span class="info"> Route: {{currentRouteName}}</span>
+<div id="menu" class="navbar navbar-expand-sm sticky-top navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">Prj_name</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div class="navbar-nav">
+                <a class="nav-link {{menuSelected 'App.home'}}" id="App.home" href="#"><i class="bi bi-house"></i> Home</a>
+                <a class="nav-link {{menuSelected 'App.monitor'}}" id="App.monitor" href="#"><i class="bi bi-speedometer"></i> Monitor</a>
+                {{#if isInRole 'manage'}}
+                    <a class="nav-link {{menuSelected 'App.manage'}}" id="App.manage" href="#"><i class="bi bi-wrench"></i> Manage</a>
+                {{/if}}
+                {{#if isInRole 'admin'}}
+                    <a class="nav-link {{menuSelected 'App.admin'}}" id="App.admin" href="#"><i class="bi bi-people"></i> Administration</a>
+                {{/if}}
+                {{#if isUserLogged}}
+                    <a class="nav-link {{menuSelected 'App.user'}}" id="App.user" href="#"><i class="bi bi-person"></i> {{getUser.profile.name}}</a>
+                {{else}}
+                    <a class="nav-link {{menuSelected 'App.login'}}" id="App.login" href="#"><i class="bi bi-box-arrow-in-right"></i> Login</a>
+                {{/if}}
+            </div>
+        </div>
+    </div>
 </div>
 </template>

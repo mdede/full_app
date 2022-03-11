@@ -1,73 +1,74 @@
 <template name="Monitor">
-    <div id="monitor">
-    <div id="break_div" class="pure-g">
-        <div class="pure-u-1 pure-u-lg-4-5">
-            <div id="break_info" class="l-box">    <a href="{{pathFor 'App.home'}}"><i class="fa fa-home"></i></a>
-                Přestávka TBD</div>
+<div id="monitor" class="container-fluid">
+    <div id="break_div" class="row">
+        <div class="col-12 col-lg-8">
+            <div id="break_info" class="l-box">
+                <a href="{{pathFor 'App.home'}}"><i class="bi-house"></i></a>
+                Přestávka TBD
+            </div>
         </div>
-        <div class="pure-u-1 pure-u-lg-1-5">
+        <div class="col-12 col-lg-4">
             <div id="time" class="l-box white-box">{{time}}</div>
         </div>
     </div>
-    <div id="hour_div" class="pure-g">
-        <div class="pure-u-1 pure-u-lg-4-5">
+    <div id="hour_div" class="row">
+        <div class="col-8">
             <div id="hour_active" class="l-box">Aktuální hodina - Actual hour 11:00 - 11:25</div>
         </div>
-        <div class="pure-u-1 pure-u-lg-1-5">
+        <div class="col-4">
             <div id="hour_shift" class="l-box white-box">B</div>
         </div>
     </div>
-    <div id="PA" class="pure-g">
-        <div class="pure-u-1 pure-u-lg-1-2">
+    <div id="PA" class="row">
+        <div class="col-12 col-lg-6">
             <div id="PA_P" class="l-box white-box">P {{mon.P}}</div>
         </div>
-        <div class="pure-u-1 pure-u-lg-1-2">
+        <div class="col-12 col-lg-6">
             <div id="PA_A" class="l-box white-box">A {{mon.A}}</div>
         </div>
     </div>
-    <div id="percent_div" class="pure-g">
-        <div class="pure-u-1 pure-u-lg-4-5">
+    <div id="percent_div" class="row">
+        <div class="col-12 col-lg-8">
             <div id="percent_info" class="l-box">{{mon.AP}}%</div>
         </div>
-        <div class="pure-u-1 pure-u-lg-1-5">
+        <div class="col-lg-4 d-none d-lg-block">
             <div id="hour_percent_image" class="image_div">
-            <img src="/img/green.png" />
+                <img src="/img/green.png" />
             </div>
         </div>
     </div>
-    <div id="triangle_div" class="pure-g">
-        <div class="pure-u-1">
+    <div id="triangle_div" class="row">
+        <div class="col">
             <span id="triangle" style="left: {{triangle_position}}%;">&#9660;</span>
         </div>
     </div>
-    <div id="bar_div" class="pure-g">
-        <div class="pure-u-1">
+    <div id="bar_div" class="row">
+        <div class="col">
             <div id="bar_div_value" style="width: {{bar_percent}}%;"></div>
         </div>
     </div>
 
-    <div id="shift_div" class="pure-g">
-        <div id="shift_active"  class="pure-u-5-5">
+    <div id="shift_div" class="row">
+        <div id="shift_active" class="col">
             <span>Aktuální směna - Actual shift 06:00 - 11:25</span>
         </div>
     </div>
 
-    <div id="shift_detail" class="pure-g">
-        <div class="pure-u-1 pure-u-md-1-2 pure-u-lg-1-4">
+    <div id="shift_detail" class="row">
+        <div class="col-12 col-sm-6 col-lg-3">
             <div id="shit_P" class="l-box white-box">P 664</div>
         </div>
-        <div class="pure-u-1 pure-u-md-1-2 pure-u-lg-1-4">
+        <div class="col-12 col-sm-6 col-lg-3">
             <div id="shift_A" class="l-box white-box">A 532</div>
         </div>
-        <div class="pure-u-1 pure-u-md-1-2 pure-u-lg-1-4">
+        <div class="col-12 col-sm-6 col-lg-3">
             <div id="shift_percent">80.1%</div>
         </div>
-        <div class="pure-u-1 pure-u-md-1-2 pure-u-lg-1-4">
+        <div class="col-12 col-sm-6 col-lg-3">
             <div id="shift_percent_image" class="image_div">
                 <img src="/img/red.png" />
             </div>
         </div>
     </div>
-
-    </div>
+</div>
 </template>

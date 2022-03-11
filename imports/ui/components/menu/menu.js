@@ -4,7 +4,7 @@ import './menu.html';
 Template.Menu.helpers({
     menuSelected(menu) {
       return String(FlowRouter.current().route.name) === String(menu)
-        ? "pure-menu-selected":"";
+        ? "active":"";
     },
 //    gitCommitHash() {
 //      return Meteor.gitCommitHash;
@@ -14,9 +14,10 @@ Template.Menu.helpers({
 );
 
 Template.Menu.events({
-  'click .pure-menu-item'(e) {
+  'click .nav-link'(e) {
     e.preventDefault();
     FlowRouter.go(e.target.id);
+    $('.navbar-collapse').collapse('hide');;
   }
 });
 

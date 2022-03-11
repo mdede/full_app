@@ -2,7 +2,6 @@ import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import { Roles } from 'meteor/alanning:roles';
-import { $ } from 'meteor/jquery';
 import './user.html';
 
 Template.App_user.onCreated(function () {
@@ -14,7 +13,7 @@ Template.App_user.helpers({
     return Template.instance().pwd12.get();
   },
   enable_pwd_button: function () {
-    return Template.instance().pwd12.get() ? "pure-button-disabled": "";
+    return Template.instance().pwd12.get() ? "disabled": "";
   },
   roles: function () {
     let roles = Roles.getRolesForUser(Meteor.userId());

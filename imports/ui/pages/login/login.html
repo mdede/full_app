@@ -1,29 +1,23 @@
 <template name="App_login">
-    <form class="login-form pure-form pure-form-aligned">
-        <fieldset>
-            <div class="pure-control-group">
-            <label htmlFor="username">Username</label>
-                <input
-                        type="text"
-                        placeholder="Username"
-                        name="username"
-                        required
-                />
-                <span class="pure-form-message-inline">This is a required field.</span>
+    <div class="container-sm">
+    <form id="login-form">
+        <div class="row mb-2">
+            <label htmlFor="username" class="col-sm-2 col-form-label">Username</label>
+            <div class="col-sm-3">
+                <input type="text" class="form-control" placeholder="Username" name="username" required/></div>
+            <div class="form-text col-sm-5">This is a required field.</div>
+        </div>
+        <div class="row mb-2">
+            <label htmlFor="password" class="col-sm-2 col-form-label">Password</label>
+            <div class="col-sm-3">
+                <input type="password" class="form-control" placeholder="Password" name="password"/>
             </div>
-
-        <div class="pure-control-group">
-            <label htmlFor="password">Password</label>
-
-            <input
-                    type="password"
-                    placeholder="Password"
-                    name="password"
-            />
         </div>
-        <div class="pure-controls">
-            <button type="submit" class="pure-button pure-button-primary">Log In</button>
+        <div class="row">
+            <div class="col-sm-3 offset-sm-2">
+                <button type="submit" class="btn btn-primary">Log In</button>
+            </div>
         </div>
-        </fieldset>
     </form>
+    </div>
 </template>

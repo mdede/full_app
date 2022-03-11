@@ -1,5 +1,5 @@
 <template name="info">
-  <h2>Learn Meteor!</h2>
+  <h2>Links!</h2>
 
   <div id="links">
       {{#if Template.subscriptionsReady}}
@@ -7,28 +7,24 @@
             {{> single_link lnk }}
         {{/each}}
       {{else}}
-        <h3>Loading...</h3>
+        {{> loading}}
       {{/if}}
 
-      <div class="pure-g">
+      <div class="container">
           {{#if isEdited 'new'}}
-          <form class="info-link-add pure-form pure-g">
-              <fieldset>
-                  <div class="pure-u-1-4">
-                      <input type="text" name="title" class="pure-input-1" placeholder="Title" required>
+              <form class="info-link-add">
+                  <div class="col">
+                      <input type="text" name="title" class="form-control" placeholder="Title" required>
                   </div>
-                  <div class="pure-u-1-4">
-                      <input type="url" name="url" class="pure-input-1" placeholder="Url" required>
+                  <div class="col">
+                      <input type="url" name="url" class="form-control" placeholder="Url" required>
                   </div>
-                  <div class="pure-u-1-4">
-                      <button type="submit" name="submit" class="pure-input-1 pure-button pure-button-primary">Add new link</button>
+                  <div class="col">
+                      <button type="submit" name="submit" class="form-control btn btn-primary form-control">Add new link</button>
                   </div>
-              </fieldset>
-          </form>
+              </form>
           {{else}}
-          <div class="pure-u-1">
-              <i class="fa fa-plus add-link" data="new"></i>
-          </div>
+              <i class="bi-plus-circle add-link" data="new"></i>
           {{/if}}
       </div>
   </div>
@@ -36,27 +32,29 @@
 
 <template name="single_link">
     {{#if isEdited _id}}
-    <form class="info-link-update pure-form pure-g">
-        <div class="pure-u-1-4">
-            <input type="text" name="title" class="pure-input-1" value="{{title}}" required>
-        </div>
-        <div class="pure-u-1-4">
-            <input type="url" name="url" class="pure-input-1" value="{{url}}" required>
-        </div>
-        <div class="pure-u-1-4">
-            <button type="submit" name="edit_submit" class="pure-input-1 pure-button pure-button-primary">Update</button>
-        </div>
-        <div class="pure-u-1-4">
-            <button class="pure-input-1 pure-button edit_cancel">Cancel</button>
+    <form class="info-link-update">
+        <div class="row">
+            <div class="col">
+                <input type="text" name="title" class="form-control" value="{{title}}" required>
+            </div>
+            <div class="col">
+                <input type="url" name="url" class="form-control" value="{{url}}" required>
+            </div>
+            <div class="col">
+                <button type="submit" name="edit_submit" class="btn btn-primary">Update</button>
+                <button class="btn btn-secondary btn-sm edit_cancel">Cancel</button>
+            </div>
         </div>
     </form>
     {{else}}
-    <div class="pure-g">
-        <div class="pure-u-1-4">{{title}}</div>
-        <div class="pure-u-1-4"><a href="{{url}}" target="_blank">{{url}}</a></div>
-        <div class="pure-u-1-4">
-            <i class="fa fa-pen edit-link" data="{{_id}}"></i>
-            <i class="fa fa-trash remove-link" data="{{_id}}"></i>
+    <div class="container">
+        <div class="row">
+        <div class="col">{{title}}</div>
+        <div class="col"><a href="{{url}}" target="_blank">{{url}}</a></div>
+        <div class="col">
+            <i class="bi-pencil edit-link" data="{{_id}}"></i>
+            <i class="bi-trash remove-link" data="{{_id}}"></i>
+        </div>
         </div>
     </div>
     {{/if}}

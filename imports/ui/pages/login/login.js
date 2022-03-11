@@ -5,7 +5,7 @@ import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import './login.html';
 
 Template.App_login.events({
-  'submit .login-form'(e) {
+  'submit #login-form'(e) {
     e.preventDefault();
 
     const target = e.target;
